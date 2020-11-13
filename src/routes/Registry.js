@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import "./Registry.css";
 
 function Registry() {
   const [text, settext] = useState("");
@@ -38,7 +39,7 @@ function Registry() {
     <div>
       <h1>REGISTRY</h1>
       <Link to="/">click here to go HOME</Link>
-      <form onSubmit={additem}>
+      <form className="entry" onSubmit={additem}>
         <input
           type="text"
           value={text}
@@ -46,14 +47,19 @@ function Registry() {
             settext(e.target.value);
           }}
         />
-        <input type="submit" />
+        <input className="button_sub" type="submit" />
       </form>
       {error ? <span style={{ color: "red" }}>error!</span> : null}
       {regdata.map((item, index) => {
         return (
           <li key={index}>
-            {item} <button onClick={() => removeitem(index)}>Remove</button>
-            <button onClick={() => updateitem(index)}>Update</button>
+            {item}{" "}
+            <button className="button_r" onClick={() => removeitem(index)}>
+              Remove
+            </button>
+            <button className="button_u" onClick={() => updateitem(index)}>
+              Update
+            </button>
           </li>
         );
       })}
